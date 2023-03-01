@@ -19,6 +19,7 @@ export default function ContactForm() {
       number,
     };
     if (contacts.some(contact => contact.name === name)) {
+      evt.target.name.focus();
       return toast.warn(`${name} is already in contacts`);
     } else {
       dispatch(addContact(newContact));
