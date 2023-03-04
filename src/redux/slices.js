@@ -13,7 +13,10 @@ const contactsSlice = createSlice({
   },
   reducers: {
     addContact(state, action) {
-      state.items.push(action.payload);
+      return {
+        ...state,
+        items: [action.payload, ...state.items],
+      };
     },
     deleteContact(state, action) {
       state.items = state.items.filter(
@@ -29,7 +32,6 @@ const contactsSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.items = action.payload;
-      console.log(action.payload);
     },
     [fetchContacts.rejected](state, action) {
       state.isLoading = false;
