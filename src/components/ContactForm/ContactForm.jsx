@@ -4,10 +4,11 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import css from './ContactForm.module.css';
 import { addContact } from 'redux/slices';
+import { getItems } from 'redux/selectors';
 
 export default function ContactForm() {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(getItems);
 
   const handleSubmit = evt => {
     evt.preventDefault();
