@@ -8,6 +8,31 @@ export const fetchContacts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/contacts');
+      // throw new Error('offline');
+      return response.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+
+export const addContact = createAsyncThunk(
+  'contacts/addContact',
+  async (newItem, thunkAPI) => {
+    try {
+      const response = await axios.post('/contacts', newItem);
+      return response.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+
+export const deleteContact = createAsyncThunk(
+  'deleteContact',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.delete(`/contacts/${id}`);
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);

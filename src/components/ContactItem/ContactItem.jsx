@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { GiRotaryPhone } from 'react-icons/gi';
 import css from './ContactItem.module.css';
-import { deleteContact } from 'redux/slices';
+import { deleteContact } from 'redux/operations';
 
 export default function ContactItem({ id, name, number }) {
   const dispatch = useDispatch();

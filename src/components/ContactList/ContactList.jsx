@@ -2,21 +2,35 @@ import { useSelector } from 'react-redux';
 
 import * as selectors from 'redux/selectors';
 import ContactItem from 'components/ContactItem/ContactItem';
+import Loader from 'components/Loader/Loader';
 
 export default function ContactList() {
-  const contacts = useSelector(selectors.getItems);
+  const items = useSelector(selectors.getItems);
+  const isLoading = useSelector(selectors.getIsLoading);
+  const error = useSelector(selectors.getError);
   const filter = useSelector(selectors.getFilter);
   const filteredContacts =
-    contacts.length > 0
-      ? contacts.filter(contact =>
-          contact.name.toLowerCase().includes(filter.toLowerCase())
+    items.length > 0
+      ? items.filter(item =>
+          item.name.toLowerCase().includes(filter.toLowerCase())
         )
       : [];
   return (
-    <ul>
-      {filteredContacts.map(({ id, name, number }) => (
-        <ContactItem key={id} id={id} name={name} number={number} />
-      ))}
-    </ul>
+    <>
+      {isLoading && !error && <Loader />}
+      {error && (
+        <>
+          <p style={{ textAlign: 'center', margin: 0, paddingTop: '0.7em' }}>
+            Oops, something went wrong :(
+          </p>
+          <p style={{ textAlign: 'center', margin: 0 }}>{error}</p>
+        </>
+      )}
+      <ul>
+        {filteredContacts.map(({ id, name, number }) => (
+          <ContactItem key={id} id={id} name={name} number={number} />
+        ))}
+      </ul>
+    </>
   );
 }
