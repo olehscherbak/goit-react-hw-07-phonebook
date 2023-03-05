@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import * as selectors from 'redux/selectors';
 import ContactItem from 'components/ContactItem/ContactItem';
 import Loader from 'components/Loader/Loader';
+import css from './ContactList.module.css';
 
 export default function ContactList() {
   const items = useSelector(selectors.getItems);
@@ -26,7 +27,7 @@ export default function ContactList() {
           <p style={{ textAlign: 'center', margin: 0 }}>{error}</p>
         </>
       )}
-      <ul>
+      <ul className={css.list}>
         {filteredContacts.map(({ id, name, number }) => (
           <ContactItem key={id} id={id} name={name} number={number} />
         ))}
