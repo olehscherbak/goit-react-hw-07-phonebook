@@ -9,12 +9,15 @@ h1 {
 }
 
 h2 {
-  margin: 20px 0 8px;
+  margin: 10px 0 8px;
 }
 
 .addBtn {
-  width: fit-content;
-  margin: 0 auto;
+  /* height: 80%; */
+  /* width: fit-content; */
+  width: 20%;
+  margin: 0;
+  margin-top: 16px;
   cursor: pointer;
 }
 
@@ -33,4 +36,14 @@ h2 {
 .input:focus {
   border: 2px solid #777;
   border-radius: 3px;
+}
+
+.inputsWraper {
+  width: 75%;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
